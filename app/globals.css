@@ -1,0 +1,193 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #fafaf8;
+  --foreground: #1a1a18;
+  --card: #ffffff;
+  --card-foreground: #1a1a18;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a18;
+  --primary: #000000;
+  --primary-foreground: #fafaf8;
+  --secondary: #f0ebe5;
+  --secondary-foreground: #1a1a18;
+  --muted: #d9d5cd;
+  --muted-foreground: #666659;
+  --accent: #000000;
+  --accent-foreground: #fafaf8;
+  --destructive: #dc2626;
+  --destructive-foreground: #fff;
+  --border: #e5e0d8;
+  --input: #ffffff;
+  --ring: #000000;
+  --chart-1: #fb923c;
+  --chart-2: #f97316;
+  --chart-3: #ea580c;
+  --chart-4: #dc2626;
+  --chart-5: #92400e;
+  --radius: 0.625rem;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #1a1a18;
+  --sidebar-primary: #000000;
+  --sidebar-primary-foreground: #fafaf8;
+  --sidebar-accent: #f0ebe5;
+  --sidebar-accent-foreground: #1a1a18;
+  --sidebar-border: #e5e0d8;
+  --sidebar-ring: #000000;
+  --orange-light: #fed7aa;
+  --orange: #fb923c;
+  --orange-dark: #ea580c;
+}
+
+.dark {
+  --background: #0f0f0d;
+  --foreground: #e8e8e6;
+  --card: #1a1a18;
+  --card-foreground: #e8e8e6;
+  --popover: #1a1a18;
+  --popover-foreground: #e8e8e6;
+  --primary: #ffffff;
+  --primary-foreground: #0f0f0d;
+  --secondary: #2a2a27;
+  --secondary-foreground: #e8e8e6;
+  --muted: #3a3a37;
+  --muted-foreground: #9a9a97;
+  --accent: #ffffff;
+  --accent-foreground: #0f0f0d;
+  --destructive: #ff4444;
+  --destructive-foreground: #fff;
+  --border: #2a2a27;
+  --input: #1a1a18;
+  --ring: #ffffff;
+  --chart-1: #f97316;
+  --chart-2: #fb923c;
+  --chart-3: #fed7aa;
+  --chart-4: #dc2626;
+  --chart-5: #92400e;
+  --sidebar: #1a1a18;
+  --sidebar-foreground: #e8e8e6;
+  --sidebar-primary: #ffffff;
+  --sidebar-primary-foreground: #0f0f0d;
+  --sidebar-accent: #2a2a27;
+  --sidebar-accent-foreground: #e8e8e6;
+  --sidebar-border: #2a2a27;
+  --sidebar-ring: #ffffff;
+  --orange-light: #92400e;
+  --orange: #f97316;
+  --orange-dark: #c2410c;
+}
+
+@theme inline {
+  --font-sans: 'Geist', 'Geist Fallback';
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-orange-light: var(--orange-light);
+  --color-orange: var(--orange);
+  --color-orange-dark: var(--orange-dark);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Hide scrollbar while maintaining scroll functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* CRITICAL FIX: Remove browser focus outline from SVG chart elements */
+  svg path:focus,
+  svg path:active,
+  svg [tabindex="-1"]:focus,
+  svg [tabindex="-1"]:active,
+  .recharts-sector:focus,
+  .recharts-sector:active {
+    outline: none !important;
+    outline-width: 0 !important;
+  }
+
+  /* Remove outline from all SVG elements to prevent white box on click */
+  svg:focus,
+  svg:active,
+  svg *:focus,
+  svg *:active {
+    outline: none !important;
+    outline-width: 0 !important;
+  }
+
+  /* Hide all Recharts interactive white box elements */
+  [data-chart] .recharts-tooltip-cursor {
+    display: none !important;
+  }
+
+  [data-chart] rect[stroke='#fff'],
+  [data-chart] rect[stroke='white'],
+  [data-chart] .recharts-rectangle[stroke='#fff'],
+  [data-chart] .recharts-rectangle[stroke='white'],
+  [data-chart] .recharts-sector[stroke='#fff'],
+  [data-chart] .recharts-sector[stroke='white'] {
+    stroke: none !important;
+    display: none !important;
+  }
+
+  [data-chart] svg,
+  [data-chart] .recharts-surface {
+    outline: none !important;
+  }
+
+  /* Remove any hover effects that add strokes */
+  [data-chart] .recharts-pie-sector:hover {
+    stroke: none !important;
+  }
+
+  [data-chart] .recharts-area-dot:hover {
+    stroke: none !important;
+  }
+}
